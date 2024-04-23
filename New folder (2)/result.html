@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Form Data</h1>
+        <div id="result"></div>
+    </div>
+<script src="script.js"></script>
+    <script >
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+     
+
+    // Clear sessionStorage after displaying result
+    sessionStorage.removeItem('quizScore');
+    sessionStorage.removeItem('totalQuestions');
+
+    // Retrieve form data from sessionStorage
+    const formData = JSON.parse(sessionStorage.getItem('formData'));
+
+    // Display form data
+    if (formData) {
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `
+            <p><strong>Name:</strong> ${formData.name}</p>
+            <p><strong>Email:</strong> ${formData.email}</p>
+            <p><strong>Phone:</strong> ${formData.phone}</p>
+        `;
+    } else {
+        // If form data is not available, display an error message
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = '<p>No data available.</p>';
+    }
+
+    // const resultElement = document.getElementById('result');
+    // const score = sessionStorage.getItem('quizScore');
+    // const totalQuestions = sessionStorage.getItem('totalQuestions');
+
+    // if (score !== null && totalQuestions !== null) {
+    //     resultElement.textContent = You scored ${score} out of ${totalQuestions}.;
+    // } else {
+    //     resultElement.textContent = 'Quiz data not available.';
+    // }
+});
+
+    </script>
+</body>
+</html>
